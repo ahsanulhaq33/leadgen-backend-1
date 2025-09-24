@@ -7,7 +7,7 @@ DATABASES: Dict[str, Dict[str, str]] = {
         "type": "mssql+aioodbc",
         "server": "192.168.20.90",
         "username": "AI_lead_gen",
-        "password": "sef8395f&*)@A)(@",
+        "password": "Cedar123",
         "database": "lead_generation",
         "driver": "ODBC Driver 17 for SQL Server"
     },

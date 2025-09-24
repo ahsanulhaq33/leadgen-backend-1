@@ -44,18 +44,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Health check endpoint
-@app.get("/health", status_code=status.HTTP_200_OK)
-async def health_check():
-    """
-    Health check endpoint
-    """
-    return {
-        "status": "healthy",
-        "app_name": settings.app_name,
-        "version": settings.version
-    }
-
 # Include routers
 app.include_router(company_router, prefix="/api/companies", tags=["Companies"])
 
