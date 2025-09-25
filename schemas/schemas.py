@@ -50,3 +50,31 @@ class PaginationParams(BaseModel):
         if v < 1:
             return 10
         return v
+
+# Job-related schemas
+class JobItem(BaseModel):
+    """Schema for individual job item"""
+    job_title: Optional[str] = None
+    job_description: Optional[str] = None
+    job_location: Optional[str] = None
+    job_type: Optional[str] = None
+    job_url: Optional[str] = None
+    job_posted_date: Optional[str] = None
+    job_pay_rate: Optional[str] = None
+    job_source: Optional[str] = None
+    
+    class Config:
+        from_attributes = True
+
+class CompanyJobsResponse(BaseModel):
+    """Response schema for company jobs with pagination"""
+    total_position: int = Field(description="Total number of job positions")
+    jobs: List[JobItem] = Field(description="List of jobs")
+    total_pages: int = Field(description="Total number of pages")
+    page_size: int = Field(description="Items per page")
+    current_page: int = Field(description="Current page number")
+    
+    @validator('total_position', 'total_pages', 'current_page', 'page_size', pre=True)
+    def convert_to_int(cls, v):
+        """Ensure integer fields are properly typed"""
+        return int(v) if v is not None else 0
